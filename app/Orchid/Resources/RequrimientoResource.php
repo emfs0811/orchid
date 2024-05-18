@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Orchid\Resources;
-
+use App\Models\Requerimiento;
 use Orchid\Crud\Resource;
+use Orchid\Screen\Fields\input;
+use Orchid\Screen\Sight;
 use Orchid\Screen\TD;
+
 
 class RequrimientoResource extends Resource
 {
@@ -12,7 +15,8 @@ class RequrimientoResource extends Resource
      *
      * @var string
      */
-    public static $model = '';
+    public static $model = Requerimiento::class;
+
 
     /**
      * Get the fields displayed by the resource.
@@ -21,7 +25,24 @@ class RequrimientoResource extends Resource
      */
     public function fields(): array
     {
-        return [];
+        return [
+            input::make('codigo')
+            ->title('Codigo')
+            ->placeholder('Ingrese Codigo'),
+
+            input::make('titulo')
+            ->title('Titulo')
+            ->placeholder('Ingrese titulo'),
+
+            input::make('descripcion')
+            ->title('Descripcion')
+            ->placeholder('Ingrese Descripcion'),
+
+            input::make('objetivo')
+            ->title('Objetivo')
+            ->placeholder('Ingrese Objetivo'),
+
+        ];
     }
 
     /**
@@ -33,6 +54,10 @@ class RequrimientoResource extends Resource
     {
         return [
             TD::make('id'),
+            TD::make('codigo'),
+            TD::make('titulo'),
+            TD::make('descripcion'),
+            TD::make('objetivo'),
 
             TD::make('created_at', 'Date of creation')
                 ->render(function ($model) {
@@ -53,7 +78,16 @@ class RequrimientoResource extends Resource
      */
     public function legend(): array
     {
-        return [];
+        return [
+            Sight::make('id', 'ID'),
+            Sight::make('codigo', 'Codigo'),
+            Sight::make('titulo', 'Titulo'),
+            Sight::make('descripcion','Descripcion'),
+            Sight::make('objetivo','Objetivo'),
+            Sight::make('created_at','Fecha de Creacion'),
+            Sight::make('updated_at','Fecha de Actualizacion'),
+
+        ];
     }
 
     /**
